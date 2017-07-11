@@ -515,7 +515,7 @@ public class EditProfileActivity extends AppCompatActivity implements GoogleApiC
     private void saveChanges(boolean isBackPressed) {
         LogUtils.LOGE(LOG_TAG, mFirstName.getText().toString() + ' ' + AccountUtils.getFirstName(this));
         final Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("edit_profile", true);
+        intent.putExtra(getString(R.string.edit_profile), true);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         boolean dataChanged = !((mFirstName.getText().toString().equals(AccountUtils.getFirstName(this))) &&
                 (mLastName.getText().toString().equals(AccountUtils.getLastName(this))) &&
