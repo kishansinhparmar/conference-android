@@ -123,6 +123,7 @@ public class RegisterActivity extends SingleInputFormActivity implements ObjectR
         ActivityCompat.finishAffinity(this);
     }
 
+
     @Override
     public void OnFailure(Throwable error) {
         Toast.makeText(this, getString(R.string.registration_unsuccessful), Toast.LENGTH_LONG).show();
