@@ -103,8 +103,17 @@ public class MainActivity extends AppCompatActivity
         mDrawer.addDrawerListener(mDrawerToogle);
         mDrawerToogle.syncState();
         if (savedInstanceState == null) {
-            selectNavigationItem(R.id.nav_camera);
+            if (getIntent().getBooleanExtra(getString(R.string.edit_profile), false)) {
+                selectNavigationItem(R.id.imageView);
+            } else {
+                selectNavigationItem(R.id.nav_camera);
+            }
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 
 import com.facebook.CallbackManager;
@@ -23,7 +24,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.gson.Gson;
 import com.systers.conference.R;
 import com.systers.conference.model.FacebookUser;
-import com.systers.conference.register.RegisterActivity;
+import com.systers.conference.register.PreRegistrationActivity;
 import com.systers.conference.util.AccountUtils;
 import com.systers.conference.util.LogUtils;
 
@@ -41,7 +42,6 @@ import butterknife.OnClick;
  */
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
-    public static final String USER_DATA = "user_data";
     private static final String LOG_TAG = LogUtils.makeLogTag(LoginActivity.class);
     private static final int GOOGLE_SIGN_IN = 9001;
     @BindView(R.id.google_sign_in_button)
@@ -60,6 +60,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(AccountUtils.getLoginVisited(this)){
+            startActivity(new Intent(this, PreRegistrationActivity.class));
+            ActivityCompat.finishAffinity(this);
+        }
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail()
@@ -134,7 +138,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     private void startRegisterActivity() {
-        startActivity(new Intent(this, RegisterActivity.class));
+        AccountUtils.setLoginVisited(this);
+        startActivity(new Intent(this, PreRegistrationActivity.class));
+        ActivityCompat.finishAffinity(this);
     }
 
     private void handleGoogleSignInResult(GoogleSignInResult result) {
