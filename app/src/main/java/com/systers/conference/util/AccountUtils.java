@@ -150,23 +150,22 @@ public class AccountUtils {
         return preferences.contains(PREFIX_PREF_ROLE) ? preferences.getString(PREFIX_PREF_ROLE, null) : null;
     }
 
-    public static void setRegisterVisited(final Context context) {
+    public static void setRegisterVisited(final Context context, final boolean value) {
         SharedPreferences preferences = getSharedPreferences(context);
-        preferences.edit().putBoolean(PREFIX_PREF_REGISTER, true).apply();
-    }
+        preferences.edit().putBoolean(PREFIX_PREF_REGISTER, value).apply();
 
     public static boolean getRegisterVisited(final Context context) {
         SharedPreferences preferences = getSharedPreferences(context);
-        return preferences.contains(PREFIX_PREF_REGISTER);
+        return preferences.contains(PREFIX_PREF_REGISTER) && preferences.getBoolean(PREFIX_PREF_REGISTER, false);
     }
 
-    public static void setLoginVisited(final Context context){
+    public static void setLoginVisited(final Context context, final boolean value) {
         SharedPreferences preferences = getSharedPreferences(context);
-        preferences.edit().putBoolean(PREFIX_PREF_LOGIN, true).apply();
+        preferences.edit().putBoolean(PREFIX_PREF_LOGIN, value).apply();
     }
 
-    public static boolean getLoginVisited(final Context context){
+    public static boolean getLoginVisited(final Context context) {
         SharedPreferences preferences = getSharedPreferences(context);
-        return preferences.contains(PREFIX_PREF_LOGIN);
+        return preferences.contains(PREFIX_PREF_LOGIN) && preferences.getBoolean(PREFIX_PREF_LOGIN, false);
     }
 }

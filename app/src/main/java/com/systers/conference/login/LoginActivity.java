@@ -137,7 +137,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     private void startRegisterActivity() {
-        AccountUtils.setLoginVisited(this);
+        AccountUtils.setLoginVisited(this, true);
         startActivity(new Intent(this, RegisterActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
     }
 

@@ -71,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(AccountUtils.getRegisterVisited(this)){
+        if (AccountUtils.getRegisterVisited(this)) {
             startActivity(new Intent(this, MainActivity.class));
             finish();
         }
@@ -238,7 +238,7 @@ public class RegisterActivity extends AppCompatActivity {
                 AccountUtils.setEmail(activity, mEmail.getText().toString());
                 AccountUtils.setCompanyName(activity, mCompanyName.getText().toString());
                 AccountUtils.setCompanyRole(activity, mRole.getText().toString());
-                AccountUtils.setRegisterVisited(activity);
+                AccountUtils.setRegisterVisited(activity, true);
                 startActivity(new Intent(activity, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
             } else {
                 LogUtils.LOGE(LOG_TAG, "OnPostExecute()");

@@ -26,7 +26,7 @@ public class DayWiseScheduleFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    @BindView(R.id.list)
+    @BindView(R.id.schedule_list)
     RecyclerView mRecyclerView;
     // TODO: Customize parameters
     private int mColumnCount = 1;
